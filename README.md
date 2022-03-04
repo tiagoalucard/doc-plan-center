@@ -176,11 +176,12 @@ Rota utilizada para consultar planos disponíveis para contratação do usuário
 | Parameter                     | Type      | Description                |
 | :--------                     | :-------  | :------------------------- |
 | `city`                        | `string`  | Nome ou slug (_) da cidade do usuário |
-| `is_cpf`                      | `boolean` | True para consultar planos de Pessoa Física|
+| `is_cpf`                      | `boolean` | True para consultar planons de Pessoa Física|
 | `order`                       | `string`  | Nome do campo, dentro do array de planos, no qual a consulta será ordenada.
 | `direction`                   | `string`  | [DESC, ASC], caso tenha o parametro a cima, também é possível escolher o tipo de ordenação
 | `cheaper`                     | `float`   | Consulta planos mais baratos que tal valor |
 | `expensive`                   | `float`   | Consulta planos mais caros que tal valor |
+| `fields`                      | `string`  | Nome dos campos que deseja separados por vírgula, ex: plan,slug,price |
 
 ## Exemplo - HTTP (200)
 
@@ -592,6 +593,1993 @@ GET /hours
 }
 ```
 
+---
+
+## Planos disponíveis para upgrade
+Nessa rota é possível ver todos os planos ativos do 
+cliente, e quais os planos possíveis e upgrade pra cada plano ativo.
+
+```http
+GET /upgrade
+```
+
+| Parameter | Type      | Description                |
+| :-------- | :-------  | :------------------------- |
+| `document`| `string`  | Documento do usuário, CPF ou CNPJ |
+
+## Exemplo - HTTP (200)
+
+#### Resposta em horário de atendimento
+```
+{
+    "success": true,
+    "data": [
+        {
+            "planName": "FIT | CORTESIA FUNCIONARIO + FIT FONE POS PAGO",
+            "planPrice": 89.9,
+            "plansAvailable": {
+                "plan": [
+                    {
+                        "id": 1,
+                        "plan": "Combo MEI Mobilidade",
+                        "slug": "internet_fibra_otica_200_mega__mais_1_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Gigabit\n☑️ 12 meses de Fidelidade\n\n1 CHIP DE 10 GB FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 1 dispositivo\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "1 chip de 10GB fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "164.70",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    },
+                    {
+                        "id": 2,
+                        "plan": "Combo MEI Mobilidade+",
+                        "slug": "internet_fibra_otica_200_mega__mais_2_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE+ \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Gigabit\n☑️ 12 meses de Fidelidade\n\n2 CHIPS DE 10 GB CADA FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10 GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 1 dispositivo\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "2 chips de 10 GB cada fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "194.60",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    },
+                    {
+                        "id": 3,
+                        "plan": "Combo MEI Mobilidade++",
+                        "slug": "internet_fibra_otica_200_mega__mais_3_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE++ \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Turbo Gigabit\n☑️ 12 meses de Fidelidade\n\n3 CHIPS DE 10 GB CADA FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10 GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 3 dispositivos\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "3 chips de 10 GB cada fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "224.50",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    }
+                ],
+                "count": 3
+            }
+        },
+        {
+            "planName": "BANDA LARGA 300MB - PARCEIROS",
+            "planPrice": 89.9,
+            "plansAvailable": {
+                "plan": [
+                    {
+                        "id": 1,
+                        "plan": "Combo MEI Mobilidade",
+                        "slug": "internet_fibra_otica_200_mega__mais_1_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Gigabit\n☑️ 12 meses de Fidelidade\n\n1 CHIP DE 10 GB FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 1 dispositivo\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "1 chip de 10GB fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "164.70",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    },
+                    {
+                        "id": 2,
+                        "plan": "Combo MEI Mobilidade+",
+                        "slug": "internet_fibra_otica_200_mega__mais_2_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE+ \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Gigabit\n☑️ 12 meses de Fidelidade\n\n2 CHIPS DE 10 GB CADA FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10 GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 1 dispositivo\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "2 chips de 10 GB cada fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "194.60",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    },
+                    {
+                        "id": 3,
+                        "plan": "Combo MEI Mobilidade++",
+                        "slug": "internet_fibra_otica_200_mega__mais_3_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE++ \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Turbo Gigabit\n☑️ 12 meses de Fidelidade\n\n3 CHIPS DE 10 GB CADA FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10 GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 3 dispositivos\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "3 chips de 10 GB cada fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "224.50",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    }
+                ],
+                "count": 3
+            }
+        },
+        {
+            "planName": "ROMANEIO",
+            "planPrice": 179.8,
+            "plansAvailable": {
+                "plan": [
+                    {
+                        "id": 2,
+                        "plan": "Combo MEI Mobilidade+",
+                        "slug": "internet_fibra_otica_200_mega__mais_2_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE+ \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Gigabit\n☑️ 12 meses de Fidelidade\n\n2 CHIPS DE 10 GB CADA FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10 GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 1 dispositivo\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "2 chips de 10 GB cada fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "194.60",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    },
+                    {
+                        "id": 3,
+                        "plan": "Combo MEI Mobilidade++",
+                        "slug": "internet_fibra_otica_200_mega__mais_3_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE++ \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Turbo Gigabit\n☑️ 12 meses de Fidelidade\n\n3 CHIPS DE 10 GB CADA FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10 GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 3 dispositivos\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "3 chips de 10 GB cada fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "224.50",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    }
+                ],
+                "count": 2
+            }
+        },
+        {
+            "planName": "0800",
+            "planPrice": 0.01,
+            "plansAvailable": {
+                "plan": [
+                    {
+                        "id": 1,
+                        "plan": "Combo MEI Mobilidade",
+                        "slug": "internet_fibra_otica_200_mega__mais_1_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Gigabit\n☑️ 12 meses de Fidelidade\n\n1 CHIP DE 10 GB FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 1 dispositivo\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "1 chip de 10GB fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "164.70",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    },
+                    {
+                        "id": 2,
+                        "plan": "Combo MEI Mobilidade+",
+                        "slug": "internet_fibra_otica_200_mega__mais_2_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE+ \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Gigabit\n☑️ 12 meses de Fidelidade\n\n2 CHIPS DE 10 GB CADA FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10 GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 1 dispositivo\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "2 chips de 10 GB cada fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "194.60",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    },
+                    {
+                        "id": 3,
+                        "plan": "Combo MEI Mobilidade++",
+                        "slug": "internet_fibra_otica_200_mega__mais_3_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE++ \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Turbo Gigabit\n☑️ 12 meses de Fidelidade\n\n3 CHIPS DE 10 GB CADA FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10 GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 3 dispositivos\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "3 chips de 10 GB cada fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "224.50",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    }
+                ],
+                "count": 3
+            }
+        },
+        {
+            "planName": "FIT | COMBO FIBRA MEI 200MB",
+            "planPrice": 129.8,
+            "plansAvailable": {
+                "plan": [
+                    {
+                        "id": 1,
+                        "plan": "Combo MEI Mobilidade",
+                        "slug": "internet_fibra_otica_200_mega__mais_1_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Gigabit\n☑️ 12 meses de Fidelidade\n\n1 CHIP DE 10 GB FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 1 dispositivo\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "1 chip de 10GB fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "164.70",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 1,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    },
+                    {
+                        "id": 2,
+                        "plan": "Combo MEI Mobilidade+",
+                        "slug": "internet_fibra_otica_200_mega__mais_2_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE+ \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Gigabit\n☑️ 12 meses de Fidelidade\n\n2 CHIPS DE 10 GB CADA FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10 GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 1 dispositivo\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "2 chips de 10 GB cada fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "194.60",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 2,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    },
+                    {
+                        "id": 3,
+                        "plan": "Combo MEI Mobilidade++",
+                        "slug": "internet_fibra_otica_200_mega__mais_3_chip",
+                        "upload": 100,
+                        "download": 200,
+                        "plan_description": "Resumo do seu Pedido\n\nCOMBO MEI MOBILIDADE++ \nEsse combo acompanha: \n\nINTERNET FIBRA ÓPTICA 200 MEGA \n☑️ 200 Mega de Download\n☑️ 100 Mega de Upload\n☑️ Wifi Turbo Gigabit\n☑️ 12 meses de Fidelidade\n\n3 CHIPS DE 10 GB CADA FALE À VONTADE \n☑️ Ligações Para Fixo e Móvel Brasil ILIMITADO\n☑️ Velocidade 4G + 10 GB Franquia de Dados por chip\n☑️ SMS ilimitado\n☑️ Portabilidade numérica disponível\n\nFIT RESOLVE Assistência Técnica Avançada\nSuporte para ajudar resolver problemas de conexão no seu:\n☑️ SmartPhone\n☑️ Smart TV\n☑️ Computador\n☑️ Câmeras de monitoramento\n☑️ Alarme\n\nAntivírus - Mcafee\nProteção avançada para seus dispositivos para poder navegar com segurança:\n☑️ 3 dispositivos\n*No valor do plano não está incluso o valor do chip que é de R$15,00",
+                        "internet_description": "Internet de 200 Mega",
+                        "has_chip": 1,
+                        "chip_description": "3 chips de 10 GB cada fale à vontade",
+                        "qty_chip": null,
+                        "has_fixo": 0,
+                        "fixo_description": "",
+                        "qty_fixo": null,
+                        "is_able_to_upgrade": 1,
+                        "is_cpf": 0,
+                        "instalattion_fee_no_debts": "180.00",
+                        "instalattion_fee_with_debts": "180.00",
+                        "installment_qty": 12,
+                        "price": "224.50",
+                        "is_promotional": 0,
+                        "created_at": "2022-01-31T18:27:51.000000Z",
+                        "updated_at": "2022-01-31T18:27:51.000000Z",
+                        "svas": [
+                            {
+                                "id": 1,
+                                "sva": "mcafee",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "sva_id": 1,
+                                    "cluster_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "sva": "wifiturbo",
+                                "site": null,
+                                "logo": null,
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "sva_id": 2,
+                                    "cluster_id": 1
+                                }
+                            }
+                        ],
+                        "disclaimer": [
+                            {
+                                "id": 1,
+                                "disclaimers": "*Contrato de Internet Fixa de 200 Mega de download",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 1
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "disclaimers": "Oferta Válida para contrato de 12 meses;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 2
+                                }
+                            },
+                            {
+                                "id": 3,
+                                "disclaimers": "Valor da instalação é de R$180,00 parcelado em até 12x;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 3
+                                }
+                            },
+                            {
+                                "id": 4,
+                                "disclaimers": "O valor do chip é de R$ 15,00 cada;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 4
+                                }
+                            },
+                            {
+                                "id": 5,
+                                "disclaimers": "Prazo de instalação são de até 30 dias;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 5
+                                }
+                            },
+                            {
+                                "id": 6,
+                                "disclaimers": "Consulte a cobertura da sua região;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 6
+                                }
+                            },
+                            {
+                                "id": 7,
+                                "disclaimers": "Valores sujeito à alteração sem aviso prévio;",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "disclaimer_id": 7
+                                }
+                            }
+                        ],
+                        "observation": [
+                            {
+                                "id": 1,
+                                "observation": "No valor do plano não está incluso o valor do chip que é de R$15,00",
+                                "created_at": "2022-01-31T18:27:51.000000Z",
+                                "updated_at": "2022-01-31T18:27:51.000000Z",
+                                "pivot": {
+                                    "plan_id": 3,
+                                    "observation_id": 1
+                                }
+                            }
+                        ],
+                        "slugs_aliases": []
+                    }
+                ],
+                "count": 3
+            }
+        }
+    ]
+}
+```
 
 ## Dúvidas
 Entre em contato por email ```samuel_lujan@hotmail.com```
