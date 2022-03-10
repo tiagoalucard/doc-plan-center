@@ -182,7 +182,10 @@ Rota utilizada para consultar planos disponíveis para contratação do usuário
 | `cheaper`                     | `float`   | Consulta planos mais baratos que tal valor |
 | `expensive`                   | `float`   | Consulta planos mais caros que tal valor |
 | `fields`                      | `string`  | Nome dos campos que deseja separados por vírgula, ex: plan,slug,price |
-
+| `limit`                       | `int`     | Quantidade de planos máximo a ser retornado |
+| `only_chip`                   | `boolean` | Passe true para consultar apenas planos móveis |                            
+| `only_combo`                  | `boolean` | Passe true para consultar apenas planos combo |
+| `only_internet`               | `boolean` | Passe true para consultar apenas planos dentro internet|
 ## Exemplo - HTTP (200)
 
 #### Resposta
@@ -606,6 +609,8 @@ GET /upgrade
 | Parameter | Type      | Description                |
 | :-------- | :-------  | :------------------------- |
 | `document`| `string`  | Documento do usuário, CPF ou CNPJ |
+| `limit`   | `int`     | Limite de planos a serem retornados|
+| `fields`  | `string`  | Nome dos campos que deseja separados por vírgula, ex: plan,slug,price |
 
 ## Exemplo - HTTP (200)
 
