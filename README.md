@@ -2594,5 +2594,3 @@ Entre em contato por email ```samuel_lujan@hotmail.com```
 Link para a collection no postman
 
 [postman](https://www.getpostman.com/collections/d499fe8d7b2fb162f196)
-
-  
