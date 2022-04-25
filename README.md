@@ -7,6 +7,20 @@
 Api de integração para, consultar planos, 
 e cadastrar leads no plan center
 
+## Índice
+
+  - [Lead](#LEAD)
+    - [Criar lead](#criar-lead)
+    - [Editar Lead](#editar-lead)
+  - [Planos](#Planos)
+    - [Consultar Planos](#consultar-planos)
+    - [Consultar CEP](#consultar-cep)
+  - [Horários de Atendimento](#horários-de-atendimento)
+  - [Planos disponíveis para upgrade](#planos-disponíveis-para-upgrade)
+  - [Dúvidas](#Dúvidas)
+  - [Contato](#contato)
+  - [Links Uteis](#links-uteis)
+
 ## LEAD
 Para a rota de leads, é indicado que as requisições
 sejam feitas em dois momentos: 
@@ -485,13 +499,9 @@ Rota utilizada para consultar planos disponíveis para contratação do usuário
 ```
 
 ---
----
+---  
 
-## Planos
-
-Consulta de cep, para retornar o endereço do usuário
-
-##### Consultar cep
+## Consultar CEP
 ```http
 GET /CEP
 ```
@@ -2586,11 +2596,10 @@ GET /upgrade
 }
 ```
 
-## Dúvidas
+
+### Contato
 Entre em contato por email ```samuel_lujan@hotmail.com```
 
-## Links Uteis
+### Links Uteis
 
-Link para a collection no postman
-
-[postman](https://www.getpostman.com/collections/d499fe8d7b2fb162f196)
+- [Link para a collection no postman](https://www.getpostman.com/collections/d499fe8d7b2fb162f196)
