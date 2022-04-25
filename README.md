@@ -79,7 +79,7 @@ sejam feitas em dois momentos:
 }
 ```
 
-## Exemplo - HTTP (500)
+## Exemplo - HTTP (400)
 
 #### Resposta
 
@@ -153,7 +153,7 @@ Evie sempre o máximo de dados possíveis, *lembrete: Nem todos os campos são o
 }
 ```
 
-## Exemplo - HTTP (500)
+## Exemplo - HTTP (400)
 
 #### Resposta
 
@@ -480,7 +480,7 @@ Rota utilizada para consultar planos disponíveis para contratação do usuário
   ```
 </details>
 
-## Exemplo - HTTP (500)
+## Exemplo - HTTP (400)
 
 #### Resposta
 ```json
@@ -529,7 +529,7 @@ GET /CEP
 }
 ```
 
-## Exemplo - HTTP (500)
+## Exemplo - HTTP (400)
 
 ##### Resposta
 ```json
